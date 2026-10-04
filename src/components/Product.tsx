@@ -1,13 +1,17 @@
-const title: string = 'iPhone';
-const price: number = 1000;
-const available: boolean = true;
+interface ProductProps {
+    title: string;
+    price: number;
+    available?: boolean;
+}
 
-function Product() {
+function Product({title, price, available = false}: ProductProps) {
     return (
         <div>
             <p>{title}</p>
-            <p>Price: {price}</p>
-            <p>{available?'In stock':'Modify'}</p>
+            <p>Price: ${price}</p>
+            <p>
+                {available ? 'In stock' : 'Out of stock'}
+            </p>
         </div>
     );
 }
