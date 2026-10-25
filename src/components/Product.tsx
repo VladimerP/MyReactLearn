@@ -8,13 +8,16 @@ interface ProductProps {
 
 
 
-function Product({title, price}: ProductProps) {
+function Product({title, price, available = false}: ProductProps) {
     const [count, setInCart] = useState<number>(0);
 
     return (
         <div>
             <p>{title}</p>
             <p>Price: ${price}</p>
+            <p>
+                {available ? 'In stock' : 'Out of stock'}
+            </p>
             <p>
                 Total: ${price*count}
             </p>

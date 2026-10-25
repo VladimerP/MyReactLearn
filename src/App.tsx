@@ -1,4 +1,5 @@
 import Header from './components/Header';
+import Search from './components/Search';
 import Product from './components/Product';
 import Footer from './components/Footer';
 import './App.css'
@@ -7,6 +8,7 @@ function App() {
     return (
         <div>
             <Header />
+            <Search />
             <Product
                 title="iPhone"
                 price={1000}
