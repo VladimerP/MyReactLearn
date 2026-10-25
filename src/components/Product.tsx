@@ -18,7 +18,7 @@ function Product({title, price}: ProductProps) {
             <p>
                 Total: ${price*count}
             </p>
-            <button onClick={() => {setInCart(count-1)}}>
+            <button disabled={count <= 0 ? true:false} onClick={() => {setInCart(count-1)}}>
                 -
             </button>
             <p>
