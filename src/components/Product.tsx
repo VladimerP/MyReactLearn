@@ -8,19 +8,24 @@ interface ProductProps {
 
 
 
-function Product({title, price, available = false}: ProductProps) {
-    const [inCart, setInCart] = useState<boolean>(false);
-    const handleClick = () => {setInCart(!inCart)};
+function Product({title, price}: ProductProps) {
+    const [count, setInCart] = useState<number>(0);
+
     return (
         <div>
             <p>{title}</p>
             <p>Price: ${price}</p>
             <p>
-                {available ? 'In stock' : 'Out of stock'}
+                Total: ${price*count}
             </p>
-
-            <button onClick={handleClick}>
-                {inCart ? 'Remove from cart' : 'Add to cart'}
+            <button disabled={count <= 0 ? true:false} onClick={() => {setInCart(count-1)}}>
+                -
+            </button>
+            <p>
+                {count}
+            </p>
+            <button onClick={() => {setInCart(count+1)}}>
+                +
             </button>
         </div>
     );
