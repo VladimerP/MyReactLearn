@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
 
-function Registration(User) {
+function Registration() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [passwordStatus, setPasswordStatus] = useState(false);
     const [password, setPassword] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
     //для ввода в поля
     const handleChange = (
@@ -34,6 +35,7 @@ function Registration(User) {
     ) => {
         event.preventDefault();
         alert("Registration successful!"+ name);
+        setSubmitted(true);
     };
  
     return (
@@ -58,11 +60,11 @@ function Registration(User) {
                     /> 
                     <input  
                         type="button"
-                        value='check'
+                        value={!passwordStatus?'Show':'Hide'}
                         onClick={handleStatusPassword}
                     /> 
                 </div>
-                <button type='submit' disabled={(name&&email&&password) ? false:true}>Register</button>
+                <button type='submit' disabled={(name.trim()&&email.trim()&&password.trim()) ? false:true}>Register</button>
            </form>
         </div>
     );
