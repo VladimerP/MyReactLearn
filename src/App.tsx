@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Search from './components/Search';
 import Product from './components/Product';
+import Registration from './components/Registration';
 import Footer from './components/Footer';
 import './App.css'
 
@@ -26,6 +27,7 @@ function App() {
                 price={700}
                 available={true}
             />
+            <Registration/>
             <Footer />
         </div>
     );

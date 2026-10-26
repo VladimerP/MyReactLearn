@@ -1,0 +1,71 @@
+import { useState } from 'react';
+
+
+function Registration(User) {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [passwordStatus, setPasswordStatus] = useState(false);
+    const [password, setPassword] = useState('');
+
+    //для ввода в поля
+    const handleChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setName(event.currentTarget.value);
+    };
+    const handleEmail = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setEmail(event.currentTarget.value);
+    };
+    const handlePassword = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setPassword(event.currentTarget.value);
+    };
+    
+    //меняем статус поля пароля
+    const handleStatusPassword = () => {
+        setPasswordStatus(!passwordStatus);
+    };
+
+    const handleFormBase = (
+        event: React.FormEvent<HTMLFormElement>
+    ) => {
+        event.preventDefault();
+        alert("Registration successful!"+ name);
+    };
+ 
+    return (
+        <div>
+           <form onSubmit={handleFormBase}>
+                <input  
+                    type="text"
+                    value={name}
+                    onChange={handleChange}
+                /> 
+                <p>Hellow, {name?name:'Guest'}!</p>
+                <input  
+                    type="email"
+                    value={email}
+                    onChange={handleEmail}
+                /> 
+                <div>
+                    <input  
+                        type={passwordStatus?"text":"password"}
+                        value={password}
+                        onChange={handlePassword}
+                    /> 
+                    <input  
+                        type="button"
+                        value='check'
+                        onClick={handleStatusPassword}
+                    /> 
+                </div>
+                <button type='submit' disabled={(name&&email&&password) ? false:true}>Register</button>
+           </form>
+        </div>
+    );
+}
+
+export default Registration;
