@@ -13,21 +13,31 @@ function Registration() {
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setName(event.currentTarget.value);
+        setSubmitted(false);
     };
     const handleEmail = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setEmail(event.currentTarget.value);
+        setSubmitted(false);
     };
     const handlePassword = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setPassword(event.currentTarget.value);
+        setSubmitted(false);
     };
     
     //меняем статус поля пароля
     const handleStatusPassword = () => {
         setPasswordStatus(!passwordStatus);
+    };
+
+    const ResetAll = () => {
+        setName('');
+        setEmail('');
+        setPassword('');
+        setSubmitted(false);
     };
 
     const handleFormBase = (
@@ -58,14 +68,25 @@ function Registration() {
                         value={password}
                         onChange={handlePassword}
                     /> 
+                    {password.trim().length != 0 && password.trim().length < 6 && (<p>password is too short</p>)}
                     <input  
                         type="button"
                         value={!passwordStatus?'Show':'Hide'}
                         onClick={handleStatusPassword}
                     /> 
                 </div>
-                <button type='submit' disabled={(name.trim()&&email.trim()&&password.trim()) ? false:true}>Register</button>
+
+                <input  
+                        type="button"
+                        value='Reset'
+                        onClick={ResetAll}
+                    /> 
+
+                <button type='submit' disabled={(name.trim()&&email.trim()&&password.trim().length >= 6) ? false:true}>Register</button>
            </form>
+           {submitted && (
+                <p>Регистрация успешна!Welcome, {name}</p>
+            )}
         </div>
     );
 }
